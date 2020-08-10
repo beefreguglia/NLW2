@@ -1,51 +1,49 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Link } from 'react-router-dom'
+import logoImg from '../../assets/images/logo.svg';
+import backIcon from '../../assets/images/icons/back.svg';
 
-//icons
-import logoIcon from '../../assets/images/logo.svg'
-import backIcon from '../../assets/images/icons/back.svg'
+import './styles.css';
 
-import './styles.css'
-
-interface PageHeaderProps{
-
-    title: string;
+interface PageHeaderProps {
+  
+  title: string;
+  description?: string;
 
 }
 
-//Tenho um componente PageHeader, ele é um Funcinal Component do React e as prorpiedades
-//são <PageHeaderProps> 
+const PageHeader: React.FC<PageHeaderProps> = (props) => {
 
-const PageHeader: React.FC<PageHeaderProps> = (props)=> {
+  return (
 
-    return(
+    <header className="page-header">
     
-        <header className="page-header">
+      <div className="top-bar-container">
+    
+        <Link to="/">
+    
+          <img src={backIcon} alt="Voltar"/>
+    
+        </Link>
+    
+        <img src={logoImg} alt="Proffy"/>
+    
+      </div>
 
-                <div className="top-bar-container">
+      <div className="header-content">
+    
+        <strong>{props.title}</strong>
 
-                    <Link to="">
+        {props.description && <p>{props.description}</p>}
 
-                        <img src={backIcon} alt="Voltar"/>
-
-                    </Link>
-
-                    <img src={logoIcon} alt="Proffy"/>
-
-                </div>
-
-                <div className="header-content">
-
-                <strong>{props.title}</strong>
-
-                {props.children}
-                
-                </div>
-
-            </header>
-
-    );
+        {props.children}
+    
+      </div>
+    
+    </header>
+  
+  );
 
 }
 
